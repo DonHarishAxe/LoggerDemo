@@ -14,11 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private ApplicationContext applicationContext;
-
-    /*@Override
-    public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(new AuditInterceptor()).addPathPatterns("/employee/*");
-    }*/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(applicationContext.getBean(AuditInterceptor.class));

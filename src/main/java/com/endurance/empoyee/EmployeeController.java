@@ -38,7 +38,7 @@ public class EmployeeController {
     }*/
 
     @RequestMapping(value="/employees",method= RequestMethod.GET)
-    public String getAllEmployees( HttpSession httpSession){
+    public Iterable<Employee> getAllEmployees( HttpSession httpSession) throws Exception{
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://google.com")
                 .queryParam("auth-userid", 1)
                 .queryParam("api-key",2)
@@ -46,7 +46,8 @@ public class EmployeeController {
         System.out.println(builder.toUriString());
         httpSession.setAttribute("user","karthik");
         httpSession.setMaxInactiveInterval(0);
-        return "yes";
+        return employeeService.getAllEmployees();
+        //return "yes";
     }
 
     @RequestMapping(value="/employees",method= RequestMethod.POST)
@@ -58,7 +59,7 @@ public class EmployeeController {
     @RequestMapping(value="/employees/{id}",method=RequestMethod.GET)
     public Employee searchById(@PathVariable String id, HttpSession httpSession){
 
-        System.out.println(httpSession.getAttribute("user"));
+        //System.out.println(httpSession.getAttribute("user"));
         return employeeService.searchById(id);
     }
 

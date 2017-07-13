@@ -31,9 +31,11 @@ public class EmployeeService {
     }*/
     @Autowired
     private EmployeeServiceCrud employeeServiceCrud;
-    public Iterable<Employee> getAllEmployees(){
-
-
+    public Iterable<Employee> getAllEmployees() throws Exception{
+        if(2==2){
+            System.out.println("Here in exception");
+            //throw new Exception("waste exception");
+        }
         return employeeServiceCrud.findAll();
 
     }
@@ -48,6 +50,7 @@ public class EmployeeService {
     public void createEmployee(Employee employee){
         System.out.println(employee.getAddress());
         employeeServiceCrud.save(employee);
+        System.out.println(employeeServiceCrud.findByAddress("Mumbai"));
     }
     public void deleteEmployee(String id){
         employeeServiceCrud.delete(id);
@@ -55,6 +58,7 @@ public class EmployeeService {
     public void updateEmployee(Employee employee){
         System.out.println(employee.getAddress());
         employeeServiceCrud.save(employee);
+
     }
     /*
     public Employee getEmployee(String id){
